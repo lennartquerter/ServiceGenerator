@@ -1,0 +1,29 @@
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using {{.NameSpace}}.Models.{{.Name}};
+using Microsoft.EntityFrameworkCore;
+
+namespace {{.NameSpace}}.Services.{{.Service}}
+{
+    public partial class {{.Service}}
+    {
+        public async Task<{{.Response}}> GetOneAsync(int id)
+        {
+            var existing = await _context.{{.Name}}.FirstOrDefaultAsync(i => i.Id == id);
+
+            if (existing == null)
+            {
+                throw new KeyNotFoundException();
+            }
+
+            await _context.SaveChangesAsync();
+
+            return new {{.Response}}
+            {
+                Id = existing.Id,
+                CreatedAt = existing.CreatedAt,
+                UpdatedAt = existing.UpdatedAt
+            };
+        }
+    }
+}

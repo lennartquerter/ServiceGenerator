@@ -1,0 +1,51 @@
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using {{.NameSpace}}.Models.Message;
+using {{.Root}}.Shared.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace {{.NameSpace}}.Services.{{.Service}}
+{
+    public partial class {{.Service}}
+    {
+        public async Task<Pagination<{{.Response}}>> GetAsync(Pagination request)
+        {
+            if (request == null)
+            {
+                request = new Pagination();
+            }
+
+            var pagination = new Pagination<{{.Response}}>
+            {
+                Limit = request.Limit,
+                Offset = request.Offset,
+                OrderBy = request.OrderBy,
+                OrderByDesc = request.OrderByDesc,
+                Results = new List<{{.Response}}>(),
+                Total = 0
+            };
+
+            var sql = $"SELECT * FROM {TableName} {TableSelectName} ";
+
+            var q = sql + $"{{.Pagination}}";
+
+            var items = await _context
+                .{{.Name}}
+                .FromSql(q)
+                .Select(src => new {{.Response}}
+                {
+                    Id = src.Id,
+                    CreatedAt = src.CreatedAt,
+                    UpdatedAt = src.UpdatedAt
+                })
+                .ToListAsync();
+
+            pagination.Total = await _context.{{.Name}}.FromSql(sql).CountAsync();
+
+            items.ForEach(r => pagination.Results.Add(r));
+
+            return pagination;
+        }
+    }
+}

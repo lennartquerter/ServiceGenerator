@@ -1,0 +1,25 @@
+﻿using System.Threading.Tasks;
+using {{.NameSpace}}.Domain.{{.Name}}Entity;
+using {{.NameSpace}}.Models.{{.Name}};
+using {{.Root}}.Shared.Models;
+
+namespace {{.NameSpace}}.Services.{{.Service}}
+{
+    public partial class {{.Service}}
+    {
+        public async Task<BaseResponse> CreateAsync({{.CreateRequest}} request)
+        {
+           var item = new {{.Name}}();
+
+           await _context.AddAsync(item);
+           await _context.SaveChangesAsync();
+
+           return new BaseResponse
+           {
+               Id = item.Id,
+               CreatedAt = item.CreatedAt,
+               UpdatedAt = item.UpdatedAt
+           };
+        }
+    }
+}

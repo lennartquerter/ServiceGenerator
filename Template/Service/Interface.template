@@ -1,0 +1,19 @@
+﻿using System.Threading.Tasks;
+using {{.NameSpace}}.Models.{{.Name}};
+using {{.Root}}.Shared.Models;
+
+namespace {{.NameSpace}}.Services.{{.Service}}.Abstract
+{
+    public interface {{.Interface}} : IService
+    {
+        Task<Pagination<{{.Response}}>> GetAsync(Pagination pagination);
+
+        Task<{{.Response}}> GetOneAsync(int id);
+
+        Task<BaseResponse> CreateAsync({{.CreateRequest}} request);
+
+        Task<BaseResponse> UpdateAsync({{.UpdateRequest}} request);
+        
+        Task DeleteAsync(int id);
+    }
+}

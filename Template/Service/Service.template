@@ -1,0 +1,17 @@
+﻿using {{.NameSpace}}.Services.{{.Service}}.Abstract;
+using {{.NameSpace}}.Data.Context;
+
+namespace {{.NameSpace}}.Services.{{.Service}}
+{
+    public partial class {{.Service}} : {{.Interface}}
+    {
+        private readonly {{.Context}} _context;
+        private const string TableName = "{{.TableName}}";
+        private const string TableSelectName = "{{.TableSelectName}}";
+
+        public {{.Service}}({{.Context}} context)
+        {
+            _context = context;
+        }
+    }
+}

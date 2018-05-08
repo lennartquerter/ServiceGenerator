@@ -1,0 +1,50 @@
+using System.Threading.Tasks;
+using {{.NameSpace}}.Services.{{.Service}}.Abstract;
+using {{.NameSpace}}.Models.{{.Name}};
+using {{.Root}}.Shared.Models;
+using Microsoft.AspNetCore.Mvc;
+
+namespace {{.NameSpace}}.Controllers.{{.Controller}}
+{
+    public class {{.Controller}} : Controller
+    {
+        private readonly {{.Interface}} _service;
+
+        public {{.Controller}}({{.Interface}} service)
+        {
+            _service = service;
+        }
+
+        [HttpPost]
+        public async Task<BaseResponse> Create([FromBody] {{.CreateRequest}} request)
+        {
+            return await _service.CreateAsync(request);
+        }
+
+        [HttpPut]
+        public async Task<BaseResponse> Update([FromBody] {{.UpdateRequest}} request)
+        {
+            return await _service.UpdateAsync(request);
+        }
+
+
+        [HttpGet]
+        public async Task<Pagination<{{.Response}}>> Get([FromQuery] Pagination pagination)
+        {
+            return await _service.GetAsync(pagination);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<{{.Response}}> GetOne(int id)
+        {
+            return await _service.GetOneAsync(id);
+        }
+
+
+        [HttpDelete("{id}")]
+        public async Task Delete(int id)
+        {
+            await _service.DeleteAsync(id);
+        }
+    }
+}
