@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using {{.NameSpace}}.Models.Message;
+using {{.NameSpace}}.Models.{{.Name}};
 using {{.Root}}.Shared.Models;
 using Microsoft.EntityFrameworkCore;
 

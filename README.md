@@ -15,3 +15,5 @@ Runs in postgres or Mssql flavor for the pagination
 Using inside a dotnet core project to generate Controller / Service
 
 Some attributes used are specific for my needs
+
+

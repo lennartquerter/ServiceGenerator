@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using {{.NameSpace}}.Models.{{.Name}};
 using {{.Root}}.Shared.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace {{.NameSpace}}.Services.{{.Service}}
 {
