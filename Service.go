@@ -24,7 +24,7 @@ func GenerateService(name string, context *string, postgres *bool) (err error) {
 	var dirs = strings.Split(dir, "/")
 	var root = dirs[len(dirs)-1]
 
-	baseDir := "/Users/lennartquerter/Documents/Go/src/Generator/Template/"
+	baseDir := "~/Documents/Go/src/Generator/Template/"
 
 	if context == nil {
 		t := "DatabaseContext"
